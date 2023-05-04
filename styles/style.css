@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 * {
     margin: 0 auto;
     max-width: 1500px;
@@ -37,12 +39,12 @@ body {
     background-color: rgb(255, 255, 255);
     border: 0.5px solid black;
     border-radius: 5px;
-    height: 85%;
+    height: 100%;
     width: 98%;
 }
 
 input[type="button"] {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Orbitron', sans-serif;;
     font-weight: bold;
     font-size: 1em;
     width: 100%;
@@ -84,11 +86,13 @@ input:active[type=button], button {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 30%;
 }
 
 #color-btn button {
-    width: 30%;
-    height: 35px;
+    width: fit-content;
+    min-height: 40px;
+    height: fit-content;
     border-radius: 15px;
     background-color: black;
     color: white;

@@ -20,40 +20,42 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="button" value="AC" id="btn">
+                <input data-clear-all type="button" value="AC" id="btn">
             </td>
             <td>
-                <input type="button" value="DEL" id="btn">
+                <input data-clear type="button" value="DEL" id="btn">
             </td>
-            <td><input type="button" value="/"></td>
+            <td><input data-action type="button" value="/"></td>
         </tr>
         <tr>
-            <td><input type="button" value="7"></td>
-            <td><input type="button" value="8"></td>
-            <td><input type="button" value="9"></td>
-            <td><input type="button" value="*"></td>
+            <td><input data-number type="button" value="7"></td>
+            <td><input data-number type="button" value="8"></td>
+            <td><input data-number type="button" value="9"></td>
+            <td><input data-action type="button" value="*"></td>
         </tr>
         <tr>
-            <td><input type="button" value="4"></td>
-            <td><input type="button" value="5"></td>
-            <td><input type="button" value="6"></td>
-            <td><input type="button" value="+"></td>
+            <td><input data-number type="button" value="4"></td>
+            <td><input data-number type="button" value="5"></td>
+            <td><input data-number type="button" value="6"></td>
+            <td><input data-action type="button" value="+"></td>
         </tr>
         <tr>
-            <td><input type="button" value="1"></td>
-            <td><input type="button" value="2"></td>
-            <td><input type="button" value="3"></td>
-            <td><input type="button" value="-"></td>
+            <td><input data-number type="button" value="1"></td>
+            <td><input data-number type="button" value="2"></td>
+            <td><input data-number type="button" value="3"></td>
+            <td><input data-action type="button" value="-"></td>
         </tr>
         <tr>
-            <td><input type="button" value="."></td>
-            <td><input type="button" value="0"></td>
-            <td colspan="2"><input type="button" value="=" id="btn"></td>
+            <td><input data-number type="button" value="."></td>
+            <td><input data-number type="button" value="0"></td>
+            <td colspan="2">
+                <input data-equal type="button" value="=" id="btn">
+            </td>
         </tr>
     </table>
 
     <div id="color-btn">
-        <button class="color-change-btn" onclick="">
+        <button class="color-change-btn">
             Change background color to dark
         </button>
     </div>

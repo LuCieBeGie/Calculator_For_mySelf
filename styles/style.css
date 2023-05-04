@@ -5,7 +5,10 @@
 
 body {
     background: linear-gradient(to right, rgb(71, 107, 118), rgb(189, 126, 169));
+}
 
+.body_dark {
+    background: linear-gradient(to right, rgb(62, 46, 46), rgb(64, 50, 60));
 }
 
 .calculator-table {

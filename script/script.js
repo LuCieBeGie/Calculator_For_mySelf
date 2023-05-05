@@ -1,46 +1,113 @@
-const changeColorButton = document.querySelector('.color-change-btn')
-const calculatorTable = document.querySelector('.calculator-table')
-const body = document.querySelector('body')
-const screen = document.querySelector('#result')
-const numberButtons = document.querySelectorAll('[data-number]')
-const actionButtons = document.querySelectorAll('[data-action]')
-const equalButton = document.querySelector('[data-equal]')
-const clear = document.querySelector('[data-clear]')
-const clear_all = document.querySelector('[data-clear-all]')
-
-changeColorButton.onclick = function () {
-    calculatorTable.classList.toggle('calculator-table-dark')
-    body.classList.toggle('body_dark')
+function add (a, b) {
+    return a + b;
 }
 
-clear_all.addEventListener('click', function () {
-    screen.value = ''
-})
+function subtract (a, b) {
+    return a - b;
+}
 
-numberButtons.forEach((el) => {
-    el.addEventListener('click', function () {
-        if (el.value === '.') {
-            if (!screen.value.includes('.') && screen.value != "") {
-                screen.value += "."
-            }
-        } else if (screen.value == '0') {
-            if (el.value !== ".") {
-                screen.value = el.value
-            }
-        }
-        else {
-            screen.value += el.value
-        }
-    })
-})
+function multiply (a, b) {
+    return a * b;
+}
 
-actionButtons.forEach((el) => {
-    el.addEventListener('click', function () {
-        let lastAction = el.value
-        if (screen.value.endsWith(lastAction)) {
-        }
-        else {
-            screen.value += lastAction
-        }
+function divide (a, b) {
+    if(b === 0) {
+        return 'Error'
+    }
+    return a / b;
+}
+
+function operate(operator, a, b) {
+    switch(operator) {
+        case '+':
+            return add(a, b);
+        case '-':
+            return subtract(a, b);
+        case '*':
+            return multiply(a, b);  
+        case '/':
+            return divide(a, b); 
+        default:
+            return 'Error'     
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const screen = document.querySelector('#result');
+    const numberButtons = document.querySelectorAll('[data-number]');
+    const actionButtons = document.querySelectorAll('[data-action]');
+    const removeButton = document.querySelector('[data-clear]');
+    const clearAll = document.querySelector('[data-clear-all]');
+    const decimalButton = document.querySelector('.decimal');
+    const equalButton = document.querySelector('[data-equal]');
+    const changeColorButton = document.querySelector('.color-change-btn')
+    const calculatorTable = document.querySelector('.calculator-table');
+    const body = document.querySelector('body');
+
+    let currentInput = '';
+    let storedInput = '';
+    let currentOperator = '';
+
+    function updateScreen() {
+        screen.value = currentInput;
+    }
+
+    numberButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            currentInput += button.value;
+            updateScreen()
+        })
     })
+
+    actionButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (currentInput === '') return;
+            if (storedInput !== '' && currentOperator !== '') {
+                currentInput = operate(
+                    currentOperator,
+                    parseFloat(storedInput),
+                    parseFloat(currentInput)
+                );
+                currentOperator = button.value;
+                storedInput = currentInput;
+                currentInput = '';
+            }
+        });
+    });
+
+    clearAll.addEventListener('click', () => {
+        currentInput = '';
+        storedInput = '';
+        currentOperator = '';
+        updateScreen();
+    });
+
+    removeButton.addEventListener('click', () => {
+        currentInput = currentInput.slice(0, -1);
+        updateScreen();
+    });
+
+    decimalButton.addEventListener('click', () => {
+        if (currentInput.includes('.')) return;
+        currentInput += '.';
+        updateScreen();
+    });
+
+    equalButton.addEventListener('click', () => {
+        if (currentInput === '' || storedInput === '' || currentOperator === '')
+            return;
+        currentInput = operate(
+            currentOperator,
+            parseFloat(storedInput),
+            parseFloat(currentInput)
+        ).toString();
+        updateScreen();
+        storedInput = '';
+        currentOperator = '';
+    })
+
+    changeColorButton.onclick = function () {
+        calculatorTable.classList.toggle('calculator-table-dark')
+        body.classList.toggle('body_dark')
+    }
 })

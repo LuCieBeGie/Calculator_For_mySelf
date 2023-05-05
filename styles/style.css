@@ -36,8 +36,11 @@ body {
 }
 
 .displayer-input {
+    font-family: 'Orbitron', sans-serif;;
     background-color: rgb(255, 255, 255);
     border: 0.5px solid black;
+    font-size: 0.7em;
+    font-weight: bold;
     border-radius: 5px;
     height: 100%;
     width: 98%;

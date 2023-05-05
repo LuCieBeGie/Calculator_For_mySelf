@@ -86,6 +86,9 @@ actionButtons.forEach((el) => {
         currentAction = el.value
         storedValue = currentValue
         currentValue = ''
+        console.log(currentAction);
+        console.log(currentValue);
+        console.log(storedValue);
     })
 })
 
@@ -101,7 +104,8 @@ clear.addEventListener('click', function () {
 })
 
 backspaceButton.addEventListener('click', function () {
-    screen.value = screen.value.slice(0, -1)
+    currentValue = currentValue.slice(0, -1)
+    screenUpdate()
 })
 
 equalButton.addEventListener('click', function () {

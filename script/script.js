@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 function add (a, b) {
     return a + b;
 }
@@ -33,86 +32,6 @@ function operate(operator, a, b) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const screen = document.querySelector('#result');
-    const numberButtons = document.querySelectorAll('[data-number]');
-    const actionButtons = document.querySelectorAll('[data-action]');
-    const removeButton = document.querySelector('[data-clear]');
-    const clearAll = document.querySelector('[data-clear-all]');
-    const decimalButton = document.querySelector('.decimal');
-    const equalButton = document.querySelector('[data-equal]');
-    const changeColorButton = document.querySelector('.color-change-btn')
-    const calculatorTable = document.querySelector('.calculator-table');
-    const body = document.querySelector('body');
-
-    let currentInput = '';
-    let storedInput = '';
-    let currentOperator = '';
-
-    function updateScreen() {
-        screen.value = currentInput;
-    }
-
-    numberButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            currentInput += button.value;
-            updateScreen()
-        })
-    })
-
-    actionButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            if (currentInput === '') return;
-            if (storedInput !== '' && currentOperator !== '') {
-                currentInput = operate(
-                    currentOperator,
-                    parseFloat(storedInput),
-                    parseFloat(currentInput)
-                );
-                currentOperator = button.value;
-                storedInput = currentInput;
-                currentInput = '';
-            }
-        });
-    });
-
-    clearAll.addEventListener('click', () => {
-        currentInput = '';
-        storedInput = '';
-        currentOperator = '';
-        updateScreen();
-    });
-
-    removeButton.addEventListener('click', () => {
-        currentInput = currentInput.slice(0, -1);
-        updateScreen();
-    });
-
-    decimalButton.addEventListener('click', () => {
-        if (currentInput.includes('.')) return;
-        currentInput += '.';
-        updateScreen();
-    });
-
-    equalButton.addEventListener('click', () => {
-        if (currentInput === '' || storedInput === '' || currentOperator === '')
-            return;
-        currentInput = operate(
-            currentOperator,
-            parseFloat(storedInput),
-            parseFloat(currentInput)
-        ).toString();
-        updateScreen();
-        storedInput = '';
-        currentOperator = '';
-    })
-
-    changeColorButton.onclick = function () {
-        calculatorTable.classList.toggle('calculator-table-dark')
-        body.classList.toggle('body_dark')
-    }
-})
-=======
 const changeColorButton = document.querySelector('.color-change-btn')
 const calculatorTable = document.querySelector('.calculator-table')
 const body = document.querySelector('body')
@@ -201,9 +120,6 @@ actionButtons.forEach((el) => {
         currentAction = el.value
         storedValue = currentValue
         currentValue = ''
-        console.log(currentAction);
-        console.log(currentValue);
-        console.log(storedValue);
     })
 })
 
@@ -241,4 +157,3 @@ changeColorButton.onclick = function () {
     calculatorTable.classList.toggle('calculator-table-dark')
     body.classList.toggle('body_dark')
 }
->>>>>>> Stashed changes

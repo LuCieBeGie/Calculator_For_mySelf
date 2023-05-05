@@ -15,7 +15,7 @@ body {
 
 .calculator-table {
     font-size: 25px;
-    width: 30vw;
+    width: 380px;
     height: 85vh;
     padding: 2%;
     background-color: #d28484;
@@ -26,7 +26,7 @@ body {
 
 .calculator-table-dark {
     font-size: 25px;
-    width: 35vw;
+    width: 380px;
     height: 85vh;
     padding: 3%;
     background-color: #000000;

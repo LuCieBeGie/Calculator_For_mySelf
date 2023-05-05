@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+* {
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+body {
+    background: linear-gradient(to right, rgb(71, 107, 118), rgb(189, 126, 169));
+}
+
+.body_dark {
+    background: linear-gradient(to right, rgb(62, 46, 46), rgb(64, 50, 60));
+}
+
+.calculator-table {
+    font-size: 25px;
+    width: 30vw;
+    height: 85vh;
+    padding: 2%;
+    background-color: #d28484;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    table-layout: fixed;
+}
+
+.calculator-table-dark {
+    font-size: 25px;
+    width: 35vw;
+    height: 85vh;
+    padding: 3%;
+    background-color: #000000;
+    border-radius: 20px;
+    box-shadow: rgba(255, 255, 255, 0.19) 0px 10px 20px, rgba(255, 255, 255, 0.23) 0px 6px 6px;
+    table-layout: fixed;
+}
+
+.displayer-input {
+    font-family: 'Orbitron', sans-serif;
+    ;
+    background-color: rgb(255, 255, 255);
+    border: 0.5px solid black;
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 100%;
+    width: 98%;
+}
+
+input[type="button"] {
+    font-family: 'Orbitron', sans-serif;
+    ;
+    font-weight: bold;
+    font-size: 1em;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #ffd4cb;
+    border: 0.5px solid rgb(119, 115, 115);
+    display: grid;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(40, 40, 40, 0.23) 0px 6px 6px;
+}
+
+
+input[type="button"]:hover {
+    background-color: #ffffff;
+    opacity: 90%;
+}
+
+input:active[type=button], button {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+#btn {
+    background-color: #1b2215;
+    color: #fff;
+    border-radius: 50px;
+}
+
+#btn:hover {
+    background-color: #ffffff;
+    opacity: 70%;
+    color: #1b2215;
+}
+
+#color-btn {
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+
+#color-btn button {
+    width: fit-content;
+    min-height: 40px;
+    height: fit-content;
+    border-radius: 15px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+#color-btn button:hover {
+    color: white;
+    background-color: #c1a5b0;
+}
+
+.change_color {
+    background-color: rgb(220, 220, 220);
+    border: 1px solid rgb(50, 50, 50);
+}

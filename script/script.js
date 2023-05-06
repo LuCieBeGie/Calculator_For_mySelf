@@ -62,8 +62,10 @@ function checkMaxLength() {
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', function () {
+        // Clear the "ERROR!" message when a number button is clicked
         if (screen.value === 'ERROR!') {
-            return;
+            screen.value = '';
+            currentValue = '';
         }
         if (button.value === '.') {
             if (!currentValue.includes('.')) {
@@ -85,7 +87,7 @@ numberButtons.forEach((button) => {
 actionButtons.forEach((el) => {
   el.addEventListener('click', function () {
     if (currentValue === '' && storedValue !== '' && currentAction !== '') {
-      // Change the operator if one has already been chosen
+      
       currentAction = el.value;
       console.log(currentAction);
       return;
@@ -108,6 +110,7 @@ actionButtons.forEach((el) => {
     console.log(storedValue);
   });
 });
+
 
 
 

@@ -83,24 +83,39 @@ numberButtons.forEach((button) => {
 })
 
 actionButtons.forEach((el) => {
-    el.addEventListener('click', function () {
-        if (currentValue === '') return
-        if (storedValue !== '' && currentAction !== '') {
-            currentValue = doAction(
-                currentAction,
-                parseFloat(storedValue),
-                parseFloat(currentValue)
-            )
-            screenUpdate()
-        }
-        currentAction = el.value
-        storedValue = currentValue
-        currentValue = ''
-        console.log(currentAction);
-        console.log(currentValue);
-        console.log(storedValue);
-    })
-})
+  el.addEventListener('click', function () {
+    if (currentValue === '') {
+      if (storedValue !== '' && currentAction !== '') {
+        
+        currentAction = el.value;
+      }
+      return;
+    }
+
+    if (storedValue !== '' && currentAction !== '') {
+      const tempResult = doAction(
+        currentAction,
+        parseFloat(storedValue),
+        parseFloat(currentValue)
+      );
+
+      if (typeof tempResult === 'number') {
+        currentValue = tempResult.toString();
+        screenUpdate();
+      } else {
+        alert(tempResult);
+        return;
+      }
+    }
+
+    currentAction = el.value;
+    storedValue = currentValue;
+    currentValue = '';
+    console.log(currentAction);
+    console.log(currentValue);
+    console.log(storedValue);
+  });
+});
 
 clear_all.addEventListener('click', function () {
     currentValue = ''

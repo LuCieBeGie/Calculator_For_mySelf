@@ -68,7 +68,8 @@ numberButtons.forEach((button) => {
         else {
             currentValue += button.value
         }
-        screenUpdate()
+        checkMaxLength();
+        screenUpdate();
     })
 })
 
@@ -127,4 +128,13 @@ equalButton.addEventListener('click', function () {
 changeColorButton.onclick = function () {
     calculatorTable.classList.toggle('calculator-table-dark')
     body.classList.toggle('body_dark')
+}
+
+function checkMaxLength() {
+    const maxLength = 10;
+
+    if(currentValue.length > maxLength) {
+        currentValue = currentValue.slice(0, maxLength);
+        alert('Maximum Input Length reached');
+    }
 }

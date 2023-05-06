@@ -84,28 +84,19 @@ numberButtons.forEach((button) => {
 
 actionButtons.forEach((el) => {
   el.addEventListener('click', function () {
-    if (currentValue === '') {
-      if (storedValue !== '' && currentAction !== '') {
-        
-        currentAction = el.value;
-      }
+    if (currentValue === '' && storedValue !== '' && currentAction !== '') {
+      // Change the operator if one has already been chosen
+      currentAction = el.value;
       return;
     }
 
     if (storedValue !== '' && currentAction !== '') {
-      const tempResult = doAction(
+      currentValue = doAction(
         currentAction,
         parseFloat(storedValue),
         parseFloat(currentValue)
       );
-
-      if (typeof tempResult === 'number') {
-        currentValue = tempResult.toString();
-        screenUpdate();
-      } else {
-        alert(tempResult);
-        return;
-      }
+      screenUpdate();
     }
 
     currentAction = el.value;
@@ -116,6 +107,7 @@ actionButtons.forEach((el) => {
     console.log(storedValue);
   });
 });
+
 
 clear_all.addEventListener('click', function () {
     currentValue = ''

@@ -53,11 +53,11 @@ function screenUpdate() {
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', function () {
-        if (screen.value !== '') {
-            screen.value = ''
+        if (screen.value === 'ERROR!') {
+            return;
         }
         if (button.value === '.') {
-            if (!currentValue.includes('.') && currentValue != "") {
+            if (!currentValue.includes('.')) {
                 currentValue += "."
             }
         } else if (currentValue == '0') {
@@ -74,21 +74,23 @@ numberButtons.forEach((button) => {
 
 actionButtons.forEach((el) => {
     el.addEventListener('click', function () {
-        if (currentValue === '') return
+        if (currentValue === '' && screen.value !== 'ERROR!') {
+            return;
+        }
         if (storedValue !== '' && currentAction !== '') {
             currentValue = doAction(
                 currentAction,
                 parseFloat(storedValue),
                 parseFloat(currentValue)
-            )
-            screenUpdate()
+            ).toString();
+            storedValue = currentValue;
+            screenUpdate();
+        } else {
+            storedValue = currentValue;
+            screenUpdate();
         }
-        currentAction = el.value
-        storedValue = currentValue
-        currentValue = ''
-        console.log(currentAction);
-        console.log(currentValue);
-        console.log(storedValue);
+        currentAction = el.value;
+        currentValue = '';
     })
 })
 
@@ -118,10 +120,8 @@ equalButton.addEventListener('click', function () {
         parseFloat(currentValue)
     ).toString()
     screenUpdate()
-    storedValue = ''
+    storedValue = currentValue
     currentAction = ''
-    currentValue = ''
-
 })
 
 changeColorButton.onclick = function () {

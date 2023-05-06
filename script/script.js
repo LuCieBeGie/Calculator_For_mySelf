@@ -13,6 +13,7 @@ let currentValue = ''
 let storedValue = ''
 let currentAction = ''
 
+
 function add(a, b) {
     return a + b
 }
@@ -52,7 +53,7 @@ function screenUpdate() {
 }
 
 function checkMaxLength() {
-    let maxLength = 10
+    let maxLength = 6
     if(currentValue.length > maxLength) {
         currentValue = currentValue.slice(0, maxLength)
         alert('Maximum length is reached')
@@ -82,24 +83,33 @@ numberButtons.forEach((button) => {
 })
 
 actionButtons.forEach((el) => {
-    el.addEventListener('click', function () {
-        if (currentValue === '') return
-        if (storedValue !== '' && currentAction !== '') {
-            currentValue = doAction(
-                currentAction,
-                parseFloat(storedValue),
-                parseFloat(currentValue)
-            )
-            screenUpdate()
-        }
-        currentAction = el.value
-        storedValue = currentValue
-        currentValue = ''
-        console.log(currentAction);
-        console.log(currentValue);
-        console.log(storedValue);
-    })
-})
+  el.addEventListener('click', function () {
+    if (currentValue === '') return;
+
+    if (storedValue !== '' && currentAction !== '') {
+      const tempResult = doAction(
+        currentAction,
+        parseFloat(storedValue),
+        parseFloat(currentValue)
+      );
+
+      if (typeof tempResult === 'number') {
+        currentValue = tempResult.toString();
+        screenUpdate();
+      } else {
+        alert(tempResult); 
+        return;
+      }
+    }
+
+    currentAction = el.value;
+    storedValue = currentValue;
+    currentValue = '';
+    console.log(currentAction);
+    console.log(currentValue);
+    console.log(storedValue);
+  });
+});
 
 clear_all.addEventListener('click', function () {
     currentValue = ''

@@ -87,6 +87,7 @@ actionButtons.forEach((el) => {
     if (currentValue === '' && storedValue !== '' && currentAction !== '') {
       // Change the operator if one has already been chosen
       currentAction = el.value;
+      console.log(currentAction);
       return;
     }
 
@@ -107,6 +108,7 @@ actionButtons.forEach((el) => {
     console.log(storedValue);
   });
 });
+
 
 
 clear_all.addEventListener('click', function () {

@@ -51,6 +51,14 @@ function screenUpdate() {
     screen.value = currentValue
 }
 
+function checkMaxLength() {
+    let maxLength = 10
+    if(currentValue.length > maxLength) {
+        currentValue = currentValue.slice(0, maxLength)
+        alert('Maximum length is reached')
+    }
+}
+
 numberButtons.forEach((button) => {
     button.addEventListener('click', function () {
         if (screen.value !== '') {
@@ -68,6 +76,7 @@ numberButtons.forEach((button) => {
         else {
             currentValue += button.value
         }
+        checkMaxLength()
         screenUpdate()
     })
 })
@@ -116,6 +125,7 @@ equalButton.addEventListener('click', function () {
         parseFloat(storedValue),
         parseFloat(currentValue)
     ).toString()
+    checkMaxLength()
     screenUpdate()
     storedValue = ''
     currentAction = ''

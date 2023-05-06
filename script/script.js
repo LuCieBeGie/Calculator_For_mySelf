@@ -87,31 +87,29 @@ numberButtons.forEach((button) => {
 actionButtons.forEach((el) => {
   el.addEventListener('click', function () {
     if (currentValue === '' && storedValue !== '' && currentAction !== '') {
-      
+      // Change the operator if one has already been chosen
       currentAction = el.value;
       console.log(currentAction);
       return;
     }
 
-    if (storedValue !== '' && currentAction !== '') {
+    if (storedValue !== '') {
       currentValue = doAction(
         currentAction,
         parseFloat(storedValue),
         parseFloat(currentValue)
       );
       screenUpdate();
-      storedValue = currentValue;
-      currentValue = '';
     }
 
     currentAction = el.value;
     storedValue = currentValue;
+    currentValue = '';
     console.log(currentAction);
     console.log(currentValue);
     console.log(storedValue);
   });
 });
-
 
 
 

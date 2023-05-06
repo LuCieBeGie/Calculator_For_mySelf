@@ -101,7 +101,6 @@ clear_all.addEventListener('click', function () {
     currentAction = ''
     screenUpdate()
 })
-
 clear.addEventListener('click', function () {
     currentValue = ''
     screenUpdate()

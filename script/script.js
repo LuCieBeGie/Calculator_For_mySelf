@@ -1,17 +1,17 @@
-const changeColorButton = document.querySelector('.color-change-btn')
-const calculatorTable = document.querySelector('.calculator-table')
-const body = document.querySelector('body')
-const screen = document.querySelector('#result')
-const numberButtons = document.querySelectorAll('[data-number]')
-const actionButtons = document.querySelectorAll('[data-action]')
-const equalButton = document.querySelector('[data-equal]')
-const clear = document.querySelector('[data-clear]')
-const clear_all = document.querySelector('[data-clear-all]')
-const backspaceButton = document.querySelector('[data-backspace]')
+const changeColorButton = document.querySelector('.color-change-btn');
+const calculatorTable = document.querySelector('.calculator-table');
+const body = document.querySelector('body');
+const screen = document.querySelector('#result');
+const numberButtons = document.querySelectorAll('[data-number]');
+const actionButtons = document.querySelectorAll('[data-action]');
+const equalButton = document.querySelector('[data-equal]');
+const clear = document.querySelector('[data-clear]');
+const clear_all = document.querySelector('[data-clear-all]');
+const backspaceButton = document.querySelector('[data-backspace]');
 
-let currentValue = ''
-let storedValue = ''
-let currentAction = ''
+let currentValue = '';
+let storedValue = '';
+let currentAction = '';
 
 function add(a, b) {
     return a + b
@@ -27,7 +27,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-        return '0'
+        return 'ERROR!'
     }
     return a / b
 }
@@ -98,6 +98,7 @@ clear_all.addEventListener('click', function () {
     currentAction = ''
     screenUpdate()
 })
+
 clear.addEventListener('click', function () {
     currentValue = ''
     screenUpdate()

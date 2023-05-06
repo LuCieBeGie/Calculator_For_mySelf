@@ -100,16 +100,18 @@ actionButtons.forEach((el) => {
         parseFloat(currentValue)
       );
       screenUpdate();
+      storedValue = currentValue;
+      currentValue = '';
     }
 
     currentAction = el.value;
     storedValue = currentValue;
-    currentValue = '';
     console.log(currentAction);
     console.log(currentValue);
     console.log(storedValue);
   });
 });
+
 
 
 

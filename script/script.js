@@ -13,6 +13,7 @@ let currentValue = '';
 let storedValue = '';
 let currentAction = '';
 
+
 function add(a, b) {
     return a + b
 }
@@ -51,6 +52,14 @@ function screenUpdate() {
     screen.value = currentValue
 }
 
+function checkMaxLength() {
+    let maxLength = 10
+    if(currentValue.length > maxLength) {
+        currentValue = currentValue.slice(0, maxLength)
+        alert('Maximum length is reached')
+    }
+}
+
 numberButtons.forEach((button) => {
     button.addEventListener('click', function () {
         if (screen.value === 'ERROR!') {
@@ -75,23 +84,21 @@ numberButtons.forEach((button) => {
 
 actionButtons.forEach((el) => {
     el.addEventListener('click', function () {
-        if (currentValue === '' && screen.value !== 'ERROR!') {
-            return;
-        }
+        if (currentValue === '') return
         if (storedValue !== '' && currentAction !== '') {
             currentValue = doAction(
                 currentAction,
                 parseFloat(storedValue),
                 parseFloat(currentValue)
-            ).toString();
-            storedValue = currentValue;
-            screenUpdate();
-        } else {
-            storedValue = currentValue;
-            screenUpdate();
+            )
+            screenUpdate()
         }
-        currentAction = el.value;
-        currentValue = '';
+        currentAction = el.value
+        storedValue = currentValue
+        currentValue = ''
+        console.log(currentAction);
+        console.log(currentValue);
+        console.log(storedValue);
     })
 })
 
@@ -127,13 +134,4 @@ equalButton.addEventListener('click', function () {
 changeColorButton.onclick = function () {
     calculatorTable.classList.toggle('calculator-table-dark')
     body.classList.toggle('body_dark')
-}
-
-function checkMaxLength() {
-    const maxLength = 10;
-
-    if(currentValue.length > maxLength) {
-        currentValue = currentValue.slice(0, maxLength);
-        alert('Maximum Input Length reached');
-    }
 }

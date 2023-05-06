@@ -60,7 +60,6 @@ function checkMaxLength() {
     }
 }
 
-Copy code
 let resultDisplayed = false;
 
 numberButtons.forEach((button) => {

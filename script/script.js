@@ -12,55 +12,53 @@ const backspaceButton = document.querySelector('[data-backspace]');
 let currentValue = '';
 let storedValue = '';
 let currentAction = '';
-
+let resultDisplayed = false;
 
 function add(a, b) {
-    return a + b
+    return a + b;
 }
 
 function subtract(a, b) {
-    return a - b
+    return a - b;
 }
 
 function multiply(a, b) {
-    return a * b
+    return a * b;
 }
 
 function divide(a, b) {
     if (b === 0) {
-        return 'ERROR!'
+        return 'ERROR!';
     }
-    return a / b
+    return a / b;
 }
 
 function doAction(action, a, b) {
     switch (action) {
         case '+':
-            return add(a, b)
+            return add(a, b);
         case '-':
-            return subtract(a, b)
+            return subtract(a, b);
         case '*':
-            return multiply(a, b)
+            return multiply(a, b);
         case '/':
-            return divide(a, b)
+            return divide(a, b);
         default:
             return 'Invalid action';
     }
 }
 
 function screenUpdate() {
-    screen.value = currentValue
+    screen.value = currentValue;
 }
 
 function checkMaxLength() {
-    let maxLength = 10
-    if(currentValue.length > maxLength) {
-        currentValue = currentValue.slice(0, maxLength)
-        alert('Maximum length is reached')
+    let maxLength = 10;
+    if (currentValue.length > maxLength) {
+        currentValue = currentValue.slice(0, maxLength);
+        alert('Maximum length is reached');
     }
 }
-
-let resultDisplayed = false;
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', function () {
@@ -69,91 +67,81 @@ numberButtons.forEach((button) => {
             resultDisplayed = false;
         }
 
-        // Clear the "ERROR!" message when a number button is clicked
         if (screen.value === 'ERROR!') {
             screen.value = '';
             currentValue = '';
         }
         if (button.value === '.') {
             if (!currentValue.includes('.')) {
-                currentValue += "."
+                currentValue += ".";
             }
         } else if (currentValue == '0') {
             if (button.value !== ".") {
-                currentValue = button.value
+                currentValue = button.value;
             }
-        }
-        else {
-            currentValue += button.value
+        } else {
+            currentValue += button.value;
         }
         checkMaxLength();
         screenUpdate();
-    })
+    });
 });
-
 
 actionButtons.forEach((el) => {
-  el.addEventListener('click', function () {
-    if (currentValue === '' && storedValue !== '' && currentAction !== '') {
-      // Change the operator if one has already been chosen
-      currentAction = el.value;
-      console.log(currentAction);
-      return;
-    }
+    el.addEventListener('click', function () {
+        if (currentValue === '' && storedValue !== '' && currentAction !== '') {
+            currentAction = el.value;
+            return;
+        }
 
-    if (storedValue !== '') {
-      currentValue = doAction(
-        currentAction,
-        parseFloat(storedValue),
-        parseFloat(currentValue)
-      );
-      screenUpdate();
-    }
+        if (storedValue !== '' && currentAction !== '') {
+            currentValue = doAction(
+                currentAction,
+                parseFloat(storedValue),
+                parseFloat(currentValue)
+            );
+            screenUpdate();
+        }
 
-    currentAction = el.value;
-    storedValue = currentValue;
-    currentValue = '';
-    console.log(currentAction);
-    console.log(currentValue);
-    console.log(storedValue);
-  });
+        currentAction = el.value;
+        storedValue = currentValue;
+        currentValue = '';
+    });
 });
 
-
-
-
 clear_all.addEventListener('click', function () {
-    currentValue = ''
-    storedValue = ''
-    currentAction = ''
-    screenUpdate()
-})
+    currentValue = '';
+    storedValue = '';
+    currentAction = '';
+    screenUpdate();
+});
+
 clear.addEventListener('click', function () {
-    currentValue = ''
-    screenUpdate()
-})
+    currentValue = '';
+    screenUpdate();
+});
 
 backspaceButton.addEventListener('click', function () {
-    currentValue = currentValue.slice(0, -1)
-    screenUpdate()
-})
-
+    currentValue = currentValue.slice(0, -1);
+    screenUpdate();
+});
 
 equalButton.addEventListener('click', function () {
-    if (currentValue === '' || storedValue === '' || currentAction === '')
-        return
+    if (currentValue === '' || storedValue === '' || currentAction === '') {
+        return;
+    }
     currentValue = doAction(
         currentAction,
         parseFloat(storedValue),
         parseFloat(currentValue)
-    ).toString()
-    screenUpdate()
-    storedValue = currentValue
-    currentAction = ''
+    ).toString();
+    screenUpdate();
+    storedValue = '';
+    currentAction = '';
     resultDisplayed = true;
 });
 
 changeColorButton.onclick = function () {
-    calculatorTable.classList.toggle('calculator-table-dark')
-    body.classList.toggle('body_dark')
-}
+    calculatorTable.classList.toggle('calculator-table-dark');
+    body.classList.toggle('body_dark');
+};

@@ -60,8 +60,16 @@ function checkMaxLength() {
     }
 }
 
+Copy code
+let resultDisplayed = false;
+
 numberButtons.forEach((button) => {
     button.addEventListener('click', function () {
+        if (resultDisplayed) {
+            currentValue = '';
+            resultDisplayed = false;
+        }
+
         // Clear the "ERROR!" message when a number button is clicked
         if (screen.value === 'ERROR!') {
             screen.value = '';
@@ -82,7 +90,8 @@ numberButtons.forEach((button) => {
         checkMaxLength();
         screenUpdate();
     })
-})
+});
+
 
 actionButtons.forEach((el) => {
   el.addEventListener('click', function () {
@@ -130,6 +139,7 @@ backspaceButton.addEventListener('click', function () {
     screenUpdate()
 })
 
+
 equalButton.addEventListener('click', function () {
     if (currentValue === '' || storedValue === '' || currentAction === '')
         return
@@ -141,7 +151,8 @@ equalButton.addEventListener('click', function () {
     screenUpdate()
     storedValue = currentValue
     currentAction = ''
-})
+    resultDisplayed = true;
+});
 
 changeColorButton.onclick = function () {
     calculatorTable.classList.toggle('calculator-table-dark')
